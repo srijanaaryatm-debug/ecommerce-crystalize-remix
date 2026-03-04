@@ -1,0 +1,37 @@
+version: '3.8'
+services:
+  nginx:
+    image: nginx:stable-alpine
+    ports:
+      - '80:80'
+      - '443:443'
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./nginx/certs:/etc/ssl/certs:ro
+    depends_on:
+      - client
+      - server
+
+  client:
+    build: ./client
+    environment:
+      - NODE_ENV=production
+    restart: always
+    networks:
+      - s4net
+
+  server:
+    build: ./server
+    environment:
+      - NODE_ENV=production
+      - DATABASE_FILE=/data/dev.sqlite
+      - FIREBASE_SERVICE_ACCOUNT_B64=${FIREBASE_SERVICE_ACCOUNT_B64}
+    volumes:
+      - ./server/data:/data
+    restart: always
+    networks:
+      - s4net
+
+networks:
+  s4net:
+    driver: bridge

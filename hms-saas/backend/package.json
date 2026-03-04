@@ -1,0 +1,13 @@
+{
+  "name": "hms-backend",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node main.js"
+  }
+}
+
+cat > backend/main.js <<'EOF'
+const http = require('http');
+http.createServer((req,res)=>{
+  res.end("HMS Backend Running");
+}).listen(5000);

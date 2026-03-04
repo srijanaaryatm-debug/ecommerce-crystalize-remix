@@ -1,0 +1,18 @@
+name: Build & Lint
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with: { node-version: '20' }
+      - name: Install root deps
+        run: npm ci
+      - name: Install client
+        run: npm --prefix client ci
+      - name: Build client
+        run: npm --prefix client run build
+      - name: Install server
+        run: npm --prefix server ci

@@ -1,0 +1,7 @@
+[credential]
+	helper = store
+[user]
+	name = srijan
+	email = srijan.aaryatm@gmail.com
+[core]
+	editor = nano

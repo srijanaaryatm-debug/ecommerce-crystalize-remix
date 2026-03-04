@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { --brand-from: #3730a3; --brand-to: #06b6d4 }
+.brand-gradient { background: linear-gradient(90deg, var(--brand-from), var(--brand-to)); }
+.dark .bg-slate-50 { background-color: #0f172a; color: #e6eef8 }
